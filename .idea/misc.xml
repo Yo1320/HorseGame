@@ -3,7 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/HorseGame/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/HorseGame/app/src/main/res/drawable-v24/bg_data_bottom_contrast.xml" value="0.1135" />
+        <entry key="..\:/HorseGame/app/src/main/res/drawable-v24/bg_data_buttom_contrast.xml" value="0.1" />
+        <entry key="..\:/HorseGame/app/src/main/res/drawable-v24/bg_data_top_contrast.xml" value="0.1095" />
+        <entry key="..\:/HorseGame/app/src/main/res/drawable/bg_data_bottom.xml" value="0.1545" />
+        <entry key="..\:/HorseGame/app/src/main/res/drawable/bg_data_top.xml" value="0.1545" />
+        <entry key="..\:/HorseGame/app/src/main/res/drawable/bg_title_bottom.xml" value="0.113" />
+        <entry key="..\:/HorseGame/app/src/main/res/drawable/bg_title_top.xml" value="0.128" />
+        <entry key="..\:/HorseGame/app/src/main/res/drawable/ic_share.xml" value="0.1" />
+        <entry key="..\:/HorseGame/app/src/main/res/layout/activity_main.xml" value="0.17592592592592593" />
       </map>
     </option>
   </component>
