@@ -4,7 +4,7 @@
 
 
 ERRORES.
--Redimensionado de tablero.
+-Redimensionado de tablero. Hecho
 -Quitar Action Bar. Hecho
 
 
@@ -13,6 +13,7 @@ MEJORAS DE UX.
 
 
 FUNCIONALIDADES.
+-Inicio aleatorio.
 -Poder movel el caballo (Comprobando el movimiento de L).
 -Pintar niveles (y limparlos).
 -Control de movimientos.
