@@ -10,10 +10,11 @@ ERRORES.
 
 MEJORAS DE UX.
 -Un color para el punto actual y otro para el resto.
+-Mostrar opciones de movimientos.
 
 
 FUNCIONALIDADES.
--Inicio aleatorio.
+-Inicio aleatorio. Hecho.
 -Poder movel el caballo (Comprobando el movimiento de L).
 -Pintar niveles (y limparlos).
 -Control de movimientos.
