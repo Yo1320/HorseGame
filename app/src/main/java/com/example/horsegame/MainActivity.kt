@@ -14,6 +14,11 @@ import androidx.core.content.ContextCompat
 class MainActivity : AppCompatActivity() {
     private var cellSelected_x = 0
     private var cellSelected_y = 0
+    private var moves = 64
+    private var movesRequired = 4
+    private var bonus = 0
+    private var width_bonus = 0
+    private var levelMoves = 64
     private lateinit var board: Array<IntArray>
     private var options = 0
     private var nameColorBlack = "black_cell"
@@ -73,7 +78,27 @@ class MainActivity : AppCompatActivity() {
         cellSelected_y = y
         selectCell(x,y)
     }
+    private fun growProgressBonus(){
+        var moves_done = levelMoves - moves
+        var bonus_done = moves_done / movesRequired
+        var moves_rest = movesRequired * (bonus_done)
+        var bonus_grow = moves_done - moves_rest
+        var v = findViewById<View>(R.id.vNewBonus)
+        var widthBonus = ((width_bonus/movesRequired) * bonus_grow).toFloat()
+        var height = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8f, getResources().getDisplayMetrics()).toInt()
+        var width = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, widthBonus, getResources().getDisplayMetrics()).toInt()
+        v.setLayoutParams(TableRow.LayoutParams(width, height))
+    }
     private fun selectCell(x: Int, y: Int){
+        moves --
+        var tvMovesData = findViewById<TextView>(R.id.tvMovesData)
+        tvMovesData.text = moves.toString()
+        growProgressBonus()
+        if (board[x][y] == 2){
+            bonus++
+            var tvBonusData = findViewById<TextView>(R.id.tvBonusData)
+            tvBonusData.text = " + $bonus"
+        }
         board[x][y] = 1
         paintHorseCell(cellSelected_x, cellSelected_y, "previus_cell")
         cellSelected_x = x
@@ -81,6 +106,30 @@ class MainActivity : AppCompatActivity() {
         clearOptions()
         paintHorseCell(x,y, "selected_cell")
         checkOptions(x,y)
+        if (moves > 0){
+            checkNewBonus()
+            //checkGameOver(x,y)
+        } //else checkSucessfullEnd()
+    }
+    private fun checkNewBonus(){
+        if(moves % movesRequired == 0){
+            var bonusCell_x = 0
+            var bonusCell_y = 0
+            var bonusCell = false
+            while(bonusCell == false){
+                bonusCell_x = (0..7).random()
+                bonusCell_y = (0..7).random()
+                if(board[bonusCell_x][bonusCell_y] == 0){
+                    bonusCell = true
+                }
+            }
+            board[bonusCell_x][bonusCell_y] = 2
+            paintBonusCell(bonusCell_x,bonusCell_y)
+        }
+    }
+    private fun paintBonusCell(x: Int, y:Int){
+        var iv: ImageView = findViewById(resources.getIdentifier("c$x$y","id", packageName))
+        iv.setImageResource(R.drawable.bonus)
     }
     private fun clearOption(x: Int, y: Int){
         var iv: ImageView = findViewById(resources.getIdentifier("c$x$y", "id", packageName))
@@ -119,7 +168,7 @@ class MainActivity : AppCompatActivity() {
             if(board[option_x][option_y] == 0 || board[option_x][option_y] == 2 ){
                 options++
                 paintOptions(option_x, option_y)
-                board[option_x][option_y] = 9
+                if (board[option_x][option_y] == 0) board[option_x][option_y] = 9
             }
         }
     }
@@ -159,6 +208,9 @@ class MainActivity : AppCompatActivity() {
         var lateralMarginDP = 0
         val width_cell = (width_dp - lateralMarginDP) /8
         val height_cell = width_cell
+
+        width_bonus = 2 * width_cell.toInt()
+
         for (i in 0..7){
             for (j in 0..7){
                 iv = findViewById(resources.getIdentifier("c$i$j", "id", packageName))
